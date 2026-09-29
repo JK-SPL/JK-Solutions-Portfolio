@@ -1,0 +1,346 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* COLOR — cinematic JK SOLUTIONS palette */
+  --bg: #050507;
+  --fg: #f4f4f6;
+  --mute: #9aa0ac;
+  --mute-strong: #d8d9dc;
+  --mute-weak: #565b66;
+  --mute-weaker: #3a3d44;
+  --primary: #410af5;
+  --primary-soft: #673bf7;
+  --primary-glow: #8d6cf9;
+  --electric: #2e6bff;
+  --cyan-soft: #7fd6e8;
+  --danger: #e5484d;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --void: #050507;
+  --ink: #07090d;
+  --panel: #0b0e13;
+  --engineering: rgba(127, 214, 232, 0.04);
+  --shadow-soft: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 20px 60px -38px rgba(0, 0, 0, 0.95);
+
+  /* SPACING */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 7rem;
+  --space-4xl: 10rem;
+
+  /* TYPOGRAPHY */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* RADIUS */
+  --radius-pill: 999px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-3xl: 36px;
+
+  /* TRANSITIONS */
+  --dur: 250ms;
+  --dur-fast: 150ms;
+  --dur-normal: 250ms;
+  --dur-slow: 350ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    overflow-wrap: anywhere;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--primary-glow);
+    color: var(--void);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary-glow);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  video {
+    display: block;
+  }
+}
+
+@layer components {
+  /* Layout */
+  .shell {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  /* Eyebrow / Label */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mute-weak);
+  }
+
+  /* Display Typography */
+  .display-1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    color: var(--fg);
+    font-size: clamp(52px, 7.5vw, 96px);
+  }
+
+  .display-2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -1.5px;
+    color: var(--fg);
+    font-size: clamp(42px, 5.5vw, 76px);
+  }
+
+  .display-3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--fg);
+    font-size: clamp(34px, 4.5vw, 54px);
+  }
+
+  .lead {
+    font-size: clamp(17px, 2vw, 22px);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--mute-strong);
+    max-width: 56ch;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Serif Italic Accent */
+  .serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--fg);
+  }
+
+  /* Chip — base tag style used across the new system */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    color: var(--mute);
+    background: transparent;
+    transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .chip:hover {
+    border-color: var(--primary-glow);
+    color: var(--fg);
+  }
+}
+
+@layer utilities {
+  .text-shadow-subtle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  .text-shadow-medium {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+  .bg-scrim {
+    background-image: linear-gradient(to bottom, rgba(5, 5, 7, 0.8), rgba(5, 5, 7, 0.4), rgba(5, 5, 7, 0));
+  }
+  .bg-scrim-hover {
+    background-image: linear-gradient(to bottom, rgba(5, 5, 7, 0.9), rgba(5, 5, 7, 0.5), rgba(5, 5, 7, 0));
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* ——— Stage 4.2.6 — cinematic hover-focus system ——— */
+
+  /* [data-lit] hosts a local pointer-light overlay. The :where() wrapper keeps
+     specificity at zero so Tailwind position utilities still win on elements
+     that are already positioned. */
+  :where([data-lit]) {
+    position: relative;
+  }
+
+  /* Local pointer light on interactive surfaces. Media frames paint their own
+     light inside the frame, and any [data-lit] that wraps a frame lets the
+     frame own it — so neither surface is double-lit. */
+  :where([data-lit]):not([data-lit-media]):not(:has([data-lit-media]))::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+    background: radial-gradient(
+      600px circle at var(--lx, 50%) var(--ly, 50%),
+      rgba(141, 108, 249, 0.1),
+      transparent 65%
+    );
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where([data-lit]):not([data-lit-media]):not(:has([data-lit-media])):hover::after {
+      opacity: 1;
+    }
+  }
+
+  :where([data-lit]):not([data-lit-media]):not(:has([data-lit-media])):focus-visible::after {
+    opacity: 1;
+  }
+
+  /* Media frame — light focus, hover zoom, contrast lift. Hover behavior is
+     gated behind (hover: hover) so touch devices never lock into a hover
+     state; keyboard focus gets the same treatment through :focus-visible. */
+  .frame-light {
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  .frame-zoom {
+    transform: scale(1);
+    transition: transform 1200ms var(--ease-out);
+  }
+
+  .frame-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 7, 0.8) 0%,
+      rgba(5, 5, 7, 0.1) 55%,
+      rgba(5, 5, 7, 0) 100%
+    );
+  }
+
+  .frame-scrim-lift {
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 7, 0.9) 0%,
+      rgba(5, 5, 7, 0.2) 50%,
+      rgba(5, 5, 7, 0.3) 100%
+    );
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .media-frame:hover .frame-light {
+      opacity: 1;
+    }
+    .media-frame:hover .frame-zoom {
+      transform: scale(1.04);
+    }
+    .media-frame:hover .frame-scrim-lift {
+      opacity: 1;
+    }
+  }
+
+  .group:focus-visible .frame-light,
+  .media-frame:focus-within .frame-light {
+    opacity: 1;
+  }
+
+  .group:focus-visible .frame-zoom,
+  .media-frame:focus-within .frame-zoom {
+    transform: scale(1.04);
+  }
+
+  .group:focus-visible .frame-scrim-lift,
+  .media-frame:focus-within .frame-scrim-lift {
+    opacity: 1;
+  }
+
+  /* Depth — LightField writes --px/--py on the frame; custom properties
+     inherit down to the media itself, which shifts a few pixels in space. */
+  .js-parallax {
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .media-frame:hover .js-parallax {
+      will-change: transform;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frame-zoom,
+    .media-frame:hover .frame-zoom,
+    .group:focus-visible .frame-zoom,
+    .media-frame:focus-within .frame-zoom {
+      transform: none;
+      transition: none;
+    }
+    .js-parallax,
+    .media-frame:hover .js-parallax {
+      transform: none;
+      will-change: auto;
+    }
+  }
+}

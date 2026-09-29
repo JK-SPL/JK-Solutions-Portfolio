@@ -1,0 +1,56 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "wigolo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "wigolo"
+      ]
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && ls -la && echo \"---PKG---\" && cat package.json 2>/dev/null)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && find . -type f -not -path \"./node_modules/*\" -not -path \"./.git/*\" -not -path \"./.next/*\" -not -path \"./dist/*\" -not -path \"./build/*\" | head -200)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && find ./src ./public -type f -not -path \"*/node_modules/*\" | sort)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && cat tailwind.config.ts next.config.mjs postcss.config.js tsconfig.json eslint.config.mjs .gitignore)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && echo \"=== btn-primary defs ===\" && grep -rn \"btn-primary\\\\|btn-ghost\" src/ --include=*.css --include=*.tsx --include=*.ts | head -20 && echo \"=== bg-engineering ===\" && grep -rn \"bg-engineering\\\\|animate-pulse-soft\\\\|hero-title\" src/ | head -20 && echo \"=== all css files ===\" && find src -name \"*.css\")",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && ls .next/static/css/ 2>/dev/null && for f in .next/static/css/*.css; do echo \"--- $f ---\"; grep -o \"btn-primary\\\\|bg-engineering\\\\|animate-pulse-soft\" \"$f\" | sort -u; done 2>/dev/null | head -30)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && echo \"=== three/r3f installed? ===\" && ls node_modules | grep -iE \"^three|react-three|@react-three|drei|lenis|framer|lottie\" ; echo \"=== installed top-level ===\" && ls node_modules | grep -v \"^\\\\.\" | head -40 && echo \"=== stage reports ===\" && cat STAGE_4.2_EXECUTION_REPORT.md)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && wc -l src/app/work/\\\\[slug\\\\]/page.tsx src/components/sections/*.tsx src/components/showcase/*.tsx src/components/nav/*.tsx src/lib/showcase.ts src/components/media/*.tsx src/app/*/page.tsx src/app/page.tsx 2>/dev/null | sort -rn | head -50)",
+      "Bash(cd \"E:\\\\JK Prompt\\\\Fresh\\\\Portfolio\" && npm run typecheck 2>&1 | tail -20 && echo \"=== LINT ===\" && npm run lint 2>&1 | tail -30)",
+      "Bash(ls -la \"E:/JK Prompt/Fresh/Portfolio\" && echo \"---SRC---\" && find \"E:/JK Prompt/Fresh/Portfolio/src\" -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" -o -name \"*.css\" \\\\\\) | sort)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && for f in ProjectsIndex Statement CapabilityStrip ProductShowcase Process LabPreview ProfileSection Footer Flagships CreativeShowcase WorkIndex ProjectRail ProcessStrip ChhatrapatiShowcase ContactBrief Services ProjectShowcase MobileMenu CommandPalette; do echo \"=== $f ===\"; grep -rn \"$f\" --include=\"*.tsx\" --include=\"*.ts\" src/ | grep -v \"^src/components/sections/$f.tsx\" | grep -v \"^src/components/showcase/$f.tsx\" | grep -v \"^src/components/nav/$f.tsx\" | head -8; done)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && grep -n \"^\\\\s*\\\\.\\\\|@layer\\\\|@utility\\\\|@keyframes\\\\|--\" src/app/globals.css | head -150 && echo \"=== TW VERSION ===\" && grep -E '\"tailwindcss\"|\"gsap\"|\"next\"|\"react\"' package.json)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && for n in StackStrip ClosingCTA WorkIndex ProjectRail ProcessStrip CreativeShowcase ProjectShowcase LabPreview Flagships; do echo \"=== $n ===\"; grep -rn \"\\\\b$n\\\\b\" --include=\"*.tsx\" --include=\"*.ts\" src/ | head -6; done)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && cat package.json && echo \"=== line-clamp/animate check in globals ===\" && grep -n \"line-clamp\\\\|animate-in\\\\|fade-in\\\\|slide-in-from\\\\|tw-animate\\\\|tailwindcss-animate\" src/app/globals.css tailwind.config.ts postcss.config.js 2>/dev/null; echo \"=== node_modules tailwindcss-animate ===\"; ls node_modules | grep -i animate)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && grep -n \"mask-fade-radial\\\\|line-clamp\\\\|text-danger\\\\|bg-danger\" src/app/globals.css | head; echo \"=== images ===\"; ls public/images 2>/dev/null | head -40)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && grep -n \"PROJECT_CATEGORIES\\\\|pendingContent\\\\|categories:\" src/data/projects.ts | head -40; echo \"=== cursor-label handlers ===\"; grep -rn \"data-cursor-label\\\\|cursor-label\" --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.css\" src/ | head -20; echo \"=== useFinePointer def ===\"; grep -n \"useFinePointer\\\\|usePrefersReducedMotion\" src/lib/motion.ts)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && sed -n '20,45p' src/data/projects.ts; echo \"=== SectionHeading ids ===\"; grep -n \"id\\\\b\" src/components/ui/SectionHeading.tsx | head -20; echo \"=== home page.tsx Process wrap ===\"; sed -n '1,40p' src/app/page.tsx; echo \"=== ids referenced by aria-labelledby across app ===\"; grep -rn 'aria-labelledby=\"[^\"]*\"' --include=\"*.tsx\" src/app src/components | sed 's/.*aria-labelledby=\"\\\\\\([^\"]*\\\\\\)\".*/\\\\1/' | sort -u)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && grep -rn 'id=\"process\"\\\\|id=\"selected-work\"\\\\|id=\"flagships\"\\\\|id=\"featured\"\\\\|id=\"stack\"' --include=\"*.tsx\" src/; echo \"=== eyebrows order on homepage ===\"; grep -rn 'eyebrow\">[0-9]' --include=\"*.tsx\" src/components/sections/ | sort -t'\"' -k2; echo \"=== SelectedWork eyebrow ===\"; grep -n \"eyebrow\" src/components/sections/SelectedWork.tsx | head -3)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && grep -n \"\\\\.border-line\\\\|\\\\.bg-line\\\\|\\\\\"line\\\\\"\\\\|line:\" tailwind.config.ts src/app/globals.css | head -20; echo \"=== count border-line usages ===\"; grep -rn \"border-line\\\\|bg-line\\\\|divide-line\" --include=\"*.tsx\" src/ | wc -l; echo \"=== any @layer defs referencing line ===\"; sed -n '199,250p' src/app/globals.css)",
+      "Bash(cd \"E:/JK Prompt/Fresh/Portfolio\" && f=$\\(ls -t .next/static/css/*.css 2>/dev/null | head -1\\); echo \"CSS file: $f\"; if [ -n \"$f\" ]; then for c in border-line divide-line bg-line btn-primary animate-in mask-fade-radial line-clamp-2 bg-engineering border-primary-glow tracking-label; do printf \"%-22s : \" \"$c\"; grep -c \"\\\\.$c\" \"$f\" 2>/dev/null || echo 0; done; echo \"--- default border-color ---\"; grep -o \"border-color:[^;}]*\" \"$f\" | sort -u | head -5; fi)"
+    ]
+  }
+}
