@@ -31,3 +31,25 @@ export function useFinePointer() {
 
   return fine;
 }
+
+/**
+ * True when the viewport is in the desktop experience tier.
+ *
+ * Cinematic scroll work (camera moves, pinning, layered depth) runs only where
+ * there is room and pointer affordance for it; tablet and mobile keep the
+ * static composition. Callers should treat `false` as "render the simple
+ * version", never as "hide the content".
+ */
+export function useDesktopViewport(minWidth = 1024) {
+  const [desktop, setDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${minWidth}px)`);
+    setDesktop(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setDesktop(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [minWidth]);
+
+  return desktop;
+}
