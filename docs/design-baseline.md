@@ -35,6 +35,15 @@ Recovery paths: (a) `git` baseline commit, (b) `backups/<timestamp>/` full copy.
 | Build ID (that build) | — | `XhYnI8D6XDy0uJsoSEjdg` |
 | Shared JS | — | `103 kB` First Load JS; `/` = 166 kB |
 
+### 2a. Build re-verification after the Phase 0 `tsconfig.json` change
+
+| Run | Tree built | Result |
+|---|---|---|
+| Main working tree, 2026-09-30 00:2x | committed tree **+ concurrent WIP** | **EXIT 1** — compiled ✓ (25.6s), failed only on the lint error `react-hooks/refs` in `src/components/aaradhya/ArServiceFinder.tsx:76` — **an untracked concurrent file, not committed, not mine to fix** |
+| Isolated `git worktree` of `362bd9e` (real `node_modules` copy; no junction — webpack rejects junction paths) | **committed tree only** | **EXIT 0** — compiled ✓ (56s), lint + typecheck pass, `✓ Generating static pages (34/34)`, same route table as the 23:38 build |
+
+Conclusion: **the committed Phase 0 tree builds clean.** Working-tree build failures while the concurrent agent's files exist are attributable to those files and will clear when they finish; OpenCode does not modify or "fix" another agent's files. Build isolation rule for all future phases: run `next build` only in a temporary `git worktree` + copied `node_modules` — never in the shared tree while another agent may be using `.next`.
+
 **Versions observed:** `next 15.5.26` · `react 19.3.0` · `gsap 3.15.0`
 
 **Pre-existing warnings (documented, deliberately NOT fixed in Phase 0):**
@@ -196,6 +205,21 @@ Verified after staging: `AGENTS.md`, `.gitignore`, `_audit/*`, `.playwright-mcp/
 | `git init` | repo | yes |
 | `git config user.name/user.email` = `OpenCode <opencode@localhost>` — **no git identity existed anywhere on this machine** | **repo-local only, global config untouched** | `git config --unset user.name/user.email` |
 
+### 9b. Work-boundary compliance — OpenCode vs Qoder (verified 2026-09-30 00:3x)
+
+Question asked by the user: *are OpenCode and Qoder repeating or overlapping each other's work?* — **No. Verified, not assumed:**
+
+| Boundary check | Evidence | Result |
+|---|---|---|
+| Qoder source files inside my 3 commits | `git show --name-only 0c5b2c5` filtered for `src/**/aaradhya*` and `src/**/Ar*` | **0 files** |
+| Qoder's working files (untracked, never staged, never edited) | `git status --short` | `src/data/aaradhya-*.ts` (5), `src/components/aaradhya/`, `src/app/products/aaradhya/`, `src/lib/aaradhya-fonts.ts`, `src/styles/`, `AGENTS.md`, `_audit/`, `.playwright-mcp/` |
+| `public/work/aaradhya/*` media (35 files) flagged by name-match in commit 1 | present in `backups/20260929-233528/` with **identical count 35/35**, i.e. before Qoder's first write (00:01) | **pre-existing JK-portfolio case-study assets — my boundary (portfolio content), not Qoder's in-flight work** |
+| Did OpenCode delete/move any Qoder file? | `src/app/products/sevadesk/{fonts.ts,aaradhya.css}` created by Qoder 00:05/00:07, now absent; their `src/lib/aaradhya-fonts.ts` present | **they relocated their own files; OpenCode deleted nothing** |
+| Shared config touched by OpenCode | `.gitignore` (`backups/`), `tsconfig.json` (`exclude: backups`) | project-wide, disclosed in §9a; **no Qoder file edited** |
+| Process/port discipline | listeners | my server only on **:3111**; **:3000 left free** for the other agent; builds only in isolated worktree so shared `.next` is never clobbered |
+
+**Boundary rules OpenCode follows from now on:** never read-modify-write `AGENTS.md`, `src/data/aaradhya*`, `src/components/aaradhya/`, `src/app/products/aaradhya/`, `src/lib/aaradhya*`, `src/styles/`, `_audit/`, `.playwright-mcp/`, or any path Qoder creates; never stage/commit them; never fix their lint/build errors (report only); never stop a process they started; before editing any shared file (`.gitignore`, `tsconfig.json`, `package.json`) re-read it first and never revert their newer changes.
+
 ---
 
 ## 10. Pre-existing observations carried forward (not fixed in Phase 0)
@@ -209,7 +233,7 @@ Verified after staging: `AGENTS.md`, `.gitignore`, `_audit/*`, `.playwright-mcp/
 
 ## 11. What Phase 0 did NOT do
 
-No cinematic implementation · no modification of `Hero.tsx` · no Payload CMS work · no new/generated assets · no dependency installs · no application code changes of any kind (the only edit to tracked config was adding `backups/` to `.gitignore`).
+No cinematic implementation · no modification of `Hero.tsx` · no Payload CMS work · no new/generated assets · no dependency installs · no application code changes of any kind. Tracked files edited: exactly two config lines — `backups/` added to `.gitignore`, `backups` added to `tsconfig.json` `exclude`. **Zero files owned by the concurrent agent were created, modified, moved, or deleted by OpenCode.**
 
 ---
 
