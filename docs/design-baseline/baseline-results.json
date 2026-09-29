@@ -1,0 +1,319 @@
+{
+  "generated_at": "2026-09-30 00:01:47",
+  "base": "http://127.0.0.1:3111",
+  "work_slugs": [
+    "/work/3d-motion-experiments",
+    "/work/aaradhya-online-seva-kendra",
+    "/work/chhatrapati-online-service",
+    "/work/e-file-finder",
+    "/work/e-parvana",
+    "/work/google-workspace-systems",
+    "/work/jk-attendance",
+    "/work/sevadesk",
+    "/work/sulabh-pranali",
+    "/work/supply-licensing",
+    "/work/vibe-coding-experiments"
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/about",
+      "status": 200
+    },
+    {
+      "route": "/capabilities",
+      "status": 200
+    },
+    {
+      "route": "/contact",
+      "status": 200
+    },
+    {
+      "route": "/lab",
+      "status": 200
+    },
+    {
+      "route": "/process",
+      "status": 200
+    },
+    {
+      "route": "/products",
+      "status": 200
+    },
+    {
+      "route": "/products/jk-attendance",
+      "status": 200
+    },
+    {
+      "route": "/products/sevadesk",
+      "status": 200
+    },
+    {
+      "route": "/resume",
+      "status": 200
+    },
+    {
+      "route": "/work",
+      "status": 200
+    },
+    {
+      "route": "/work/sevadesk",
+      "status": 200
+    },
+    {
+      "route": "/work/jk-attendance",
+      "status": 200
+    },
+    {
+      "route": "/services",
+      "status": 308,
+      "location": "/capabilities"
+    },
+    {
+      "route": "/command",
+      "status": 307,
+      "location": "http://localhost:3111/command/login"
+    },
+    {
+      "route": "/command/login",
+      "status": 200
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200
+    },
+    {
+      "route": "/icon.svg",
+      "status": 200
+    },
+    {
+      "route": "/api/brief",
+      "status": 405
+    },
+    {
+      "route": "/api/command/login",
+      "status": 405
+    },
+    {
+      "route": "/api/command/logout",
+      "status": 405
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "status": 404
+    },
+    {
+      "route": "/work/3d-motion-experiments",
+      "status": 200
+    },
+    {
+      "route": "/work/aaradhya-online-seva-kendra",
+      "status": 200
+    },
+    {
+      "route": "/work/chhatrapati-online-service",
+      "status": 200
+    },
+    {
+      "route": "/work/e-file-finder",
+      "status": 200
+    },
+    {
+      "route": "/work/e-parvana",
+      "status": 200
+    },
+    {
+      "route": "/work/google-workspace-systems",
+      "status": 200
+    },
+    {
+      "route": "/work/sulabh-pranali",
+      "status": 200
+    },
+    {
+      "route": "/work/supply-licensing",
+      "status": 200
+    },
+    {
+      "route": "/work/vibe-coding-experiments",
+      "status": 200
+    }
+  ],
+  "home_breakpoint_audit": [
+    {
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5965,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 10403,
+      "viewport": "1920x1080",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    },
+    {
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5965,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 10204,
+      "viewport": "1440x900",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    },
+    {
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5965,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 9779,
+      "viewport": "1024x768",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    },
+    {
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5922,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 11337,
+      "viewport": "768x1024",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    },
+    {
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5873,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 14237,
+      "viewport": "390x844",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    },
+    {
+      "scrollWidth": 375,
+      "innerWidth": 375,
+      "overflow": false,
+      "h1": [
+        "I BUILD WITH AI.I ENGINEERFOR REAL LIFE."
+      ],
+      "h1count": 1,
+      "ctaLinks": 35,
+      "imgs": 4,
+      "offscreenLazy": 1,
+      "textLen": 5873,
+      "fonts": "loaded",
+      "lang": "en",
+      "title": "JK SOLUTIONS \u2014 Digital Products & Engineering",
+      "desc": "Digital products, websites and business systems built from idea to deployment. Based in India, built for real-world use.",
+      "scrollH": 14249,
+      "viewport": "375x667",
+      "consoleErrors": [],
+      "consoleErrorCount": 0,
+      "afterScroll": {
+        "bad": [],
+        "loaded": 4,
+        "total": 4
+      },
+      "netFailures": []
+    }
+  ],
+  "reduced_motion": {
+    "textLen": 5965,
+    "emptyTextEls": 0,
+    "scrollWidth": 1440,
+    "innerWidth": 1440
+  }
+}
