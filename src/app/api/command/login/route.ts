@@ -6,26 +6,17 @@ import {
   createSessionToken,
   validateCredentials,
 } from "@/lib/session";
+import { clientIp, createRateLimit } from "@/lib/rate-limit";
 
-// naive in-memory rate limit: 8 attempts / 10 min per IP
-const attempts = new Map<string, { count: number; reset: number }>();
-function rateLimited(ip: string) {
-  const now = Date.now();
-  const cur = attempts.get(ip);
-  if (!cur || cur.reset < now) {
-    attempts.set(ip, { count: 1, reset: now + 10 * 60 * 1000 });
-    return false;
-  }
-  cur.count += 1;
-  return cur.count > 8;
-}
+// In-memory rate limit: 8 attempts / 10 min per IP, 40 / 10 min process-wide
+// (the process ceiling survives simple X-Forwarded-For rotation).
+const loginLimit = createRateLimit({ perIp: 8, perProcess: 40, windowMs: 10 * 60 * 1000 });
 
 export async function POST(req: Request) {
   if (!commandAuthConfigured()) {
     return NextResponse.json({ error: "Authentication is not configured on this deployment." }, { status: 503 });
   }
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  if (rateLimited(ip)) {
+  if (loginLimit(clientIp(req.headers))) {
     return NextResponse.json({ error: "Too many attempts. Try later." }, { status: 429 });
   }
 

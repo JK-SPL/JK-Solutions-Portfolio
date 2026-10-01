@@ -1,21 +1,14 @@
 import { NextResponse } from "next/server";
 import { CONTACT_EMAIL } from "@/data/social";
+import { recordBrief, recordSpamAttempt } from "@/lib/briefs";
+import { clientIp, createRateLimit } from "@/lib/rate-limit";
 
 const BUILD_OPTIONS = ["Website", "SaaS", "CRM", "Automation", "AI", "Mobile", "3D / Motion", "Something Experimental"];
 const STAGE_OPTIONS = ["Idea", "Prototype", "Existing Product", "Redesign", "Scaling"];
 
-// naive in-memory rate limit: 5 briefs / hour per IP
-const hits = new Map<string, { count: number; reset: number }>();
-function rateLimited(ip: string) {
-  const now = Date.now();
-  const cur = hits.get(ip);
-  if (!cur || cur.reset < now) {
-    hits.set(ip, { count: 1, reset: now + 60 * 60 * 1000 });
-    return false;
-  }
-  cur.count += 1;
-  return cur.count > 5;
-}
+// In-memory rate limit: 5 briefs / hour per IP, 50 / hour process-wide
+// (the process ceiling survives simple X-Forwarded-For rotation).
+const briefLimit = createRateLimit({ perIp: 5, perProcess: 50, windowMs: 60 * 60 * 1000 });
 
 function str(v: unknown, max: number): v is string {
   return typeof v === "string" && v.trim().length > 0 && v.length <= max;
@@ -35,8 +28,7 @@ function buildMailto(d: { building: string; stage: string; description: string; 
  * the enquiry is never silently swallowed. CRM persistence plugs in here later.
  */
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  if (rateLimited(ip)) {
+  if (briefLimit(clientIp(req.headers))) {
     return NextResponse.json({ error: "Too many submissions. Try later." }, { status: 429 });
   }
 
@@ -49,6 +41,7 @@ export async function POST(req: Request) {
 
   // honeypot — real users never fill this
   if (typeof body.company === "string" && body.company.length > 0) {
+    recordSpamAttempt();
     return NextResponse.json({ ok: true, delivered: true }); // silently drop bots
   }
 
@@ -76,11 +69,14 @@ export async function POST(req: Request) {
         signal: AbortSignal.timeout(8000),
       });
       if (!res.ok) throw new Error(`webhook ${res.status}`);
+      recordBrief({ ...brief, delivered: true, delivery: "webhook" });
       return NextResponse.json({ ok: true, delivered: true });
     } catch {
+      recordBrief({ ...brief, delivered: false, delivery: "mailto-fallback" });
       return NextResponse.json({ ok: true, delivered: false, mailto: buildMailto(brief) });
     }
   }
 
+  recordBrief({ ...brief, delivered: false, delivery: "mailto-fallback" });
   return NextResponse.json({ ok: true, delivered: false, mailto: buildMailto(brief) });
 }
